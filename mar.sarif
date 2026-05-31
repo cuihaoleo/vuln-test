@@ -1,0 +1,275 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/main/sarif-2.1/schema/sarif-schema-2.1.0.json",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "fullName": "Trivy Vulnerability Scanner",
+          "informationUri": "https://github.com/aquasecurity/trivy",
+          "name": "Trivy",
+          "rules": [
+            {
+              "id": "CVE-2026-33278",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "unbound: Unbound DNSSEC Validator Use-After-Free via Deep Copy Pointer Overwrite Leading to DoS and Possible Remote Code Execution"
+              },
+              "fullDescription": {
+                "text": "NLnet Labs Unbound 1.19.1 up to and including version 1.25.0 has a vulnerability in the DNSSEC validator that enables denial of service and possible remote code execution as a result of deep copying a data structure and erroneously overwriting a destination pointer. An adversary can exploit the vulnerability by controlling a malicious signed zone and querying a vulnerable Unbound. When DS sub-queries need to suspend validation due to NSEC3 computational budget exhaustion (introduced in Unbound 1.19.1), Unbound deep-copies response messages to preserve them across memory region teardown. A struct-assignment bug overwrites the destination's pointer with the source's pointer. After the sub-query region is freed, the resumed validator dereferences this dangling pointer, triggering a crash or potentially enabling arbitrary code execution. Unbound 1.25.1 contains a patch with a fix to preserve the correct pointer when deep copying the data structure."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2026-33278",
+              "help": {
+                "text": "Vulnerability CVE-2026-33278\nSeverity: CRITICAL\nPackage: libunbound8\nFixed Version: 1.22.0-2+deb13u3\nLink: [CVE-2026-33278](https://avd.aquasec.com/nvd/cve-2026-33278)\nNLnet Labs Unbound 1.19.1 up to and including version 1.25.0 has a vulnerability in the DNSSEC validator that enables denial of service and possible remote code execution as a result of deep copying a data structure and erroneously overwriting a destination pointer. An adversary can exploit the vulnerability by controlling a malicious signed zone and querying a vulnerable Unbound. When DS sub-queries need to suspend validation due to NSEC3 computational budget exhaustion (introduced in Unbound 1.19.1), Unbound deep-copies response messages to preserve them across memory region teardown. A struct-assignment bug overwrites the destination's pointer with the source's pointer. After the sub-query region is freed, the resumed validator dereferences this dangling pointer, triggering a crash or potentially enabling arbitrary code execution. Unbound 1.25.1 contains a patch with a fix to preserve the correct pointer when deep copying the data structure.",
+                "markdown": "**Vulnerability CVE-2026-33278**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|CRITICAL|libunbound8|1.22.0-2+deb13u3|[CVE-2026-33278](https://avd.aquasec.com/nvd/cve-2026-33278)|\n\nNLnet Labs Unbound 1.19.1 up to and including version 1.25.0 has a vulnerability in the DNSSEC validator that enables denial of service and possible remote code execution as a result of deep copying a data structure and erroneously overwriting a destination pointer. An adversary can exploit the vulnerability by controlling a malicious signed zone and querying a vulnerable Unbound. When DS sub-queries need to suspend validation due to NSEC3 computational budget exhaustion (introduced in Unbound 1.19.1), Unbound deep-copies response messages to preserve them across memory region teardown. A struct-assignment bug overwrites the destination's pointer with the source's pointer. After the sub-query region is freed, the resumed validator dereferences this dangling pointer, triggering a crash or potentially enabling arbitrary code execution. Unbound 1.25.1 contains a patch with a fix to preserve the correct pointer when deep copying the data structure."
+              },
+              "properties": {
+                "cvssv3_baseScore": 9.8,
+                "cvssv3_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+                "precision": "very-high",
+                "security-severity": "9.8",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "CRITICAL"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2026-42960",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "unbound: Unbound DNS Cache Poisoning via Promiscuous Additional Section RRSet Acceptance"
+              },
+              "fullDescription": {
+                "text": "NLnet Labs Unbound up to and including version 1.25.0 is vulnerable to poisoning via promiscuous records for the authority section. Promiscuous RRSets that complement DNS replies in the authority section can be used to trick Unbound to cache such records. If an adversary is able to attach such records in a reply (i.e., spoofed packet, fragmentation attack) he would be able to poison Unbound's cache. A malicious actor can exploit the possible poisonous effect by injecting RRSets other than NS that are also accompanied by address records in a reply, for example MX. This could be achieved by trying to spoof a reply packet or fragmentation attacks. Unbound would then accept the relative address records in the additional section and cache them if the authority RRSet has enough trust at this point, i.e., in-zone data for the delegation point. Unbound 1.25.1 contains a patch with a fix that disregards address records from the additional section if they are not explicitly relevant only to authority NS records, mitigating the possible poison effect. This is a complement fix to CVE-2025-11411."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2026-42960",
+              "help": {
+                "text": "Vulnerability CVE-2026-42960\nSeverity: CRITICAL\nPackage: libunbound8\nFixed Version: 1.22.0-2+deb13u3\nLink: [CVE-2026-42960](https://avd.aquasec.com/nvd/cve-2026-42960)\nNLnet Labs Unbound up to and including version 1.25.0 is vulnerable to poisoning via promiscuous records for the authority section. Promiscuous RRSets that complement DNS replies in the authority section can be used to trick Unbound to cache such records. If an adversary is able to attach such records in a reply (i.e., spoofed packet, fragmentation attack) he would be able to poison Unbound's cache. A malicious actor can exploit the possible poisonous effect by injecting RRSets other than NS that are also accompanied by address records in a reply, for example MX. This could be achieved by trying to spoof a reply packet or fragmentation attacks. Unbound would then accept the relative address records in the additional section and cache them if the authority RRSet has enough trust at this point, i.e., in-zone data for the delegation point. Unbound 1.25.1 contains a patch with a fix that disregards address records from the additional section if they are not explicitly relevant only to authority NS records, mitigating the possible poison effect. This is a complement fix to CVE-2025-11411.",
+                "markdown": "**Vulnerability CVE-2026-42960**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|CRITICAL|libunbound8|1.22.0-2+deb13u3|[CVE-2026-42960](https://avd.aquasec.com/nvd/cve-2026-42960)|\n\nNLnet Labs Unbound up to and including version 1.25.0 is vulnerable to poisoning via promiscuous records for the authority section. Promiscuous RRSets that complement DNS replies in the authority section can be used to trick Unbound to cache such records. If an adversary is able to attach such records in a reply (i.e., spoofed packet, fragmentation attack) he would be able to poison Unbound's cache. A malicious actor can exploit the possible poisonous effect by injecting RRSets other than NS that are also accompanied by address records in a reply, for example MX. This could be achieved by trying to spoof a reply packet or fragmentation attacks. Unbound would then accept the relative address records in the additional section and cache them if the authority RRSet has enough trust at this point, i.e., in-zone data for the delegation point. Unbound 1.25.1 contains a patch with a fix that disregards address records from the additional section if they are not explicitly relevant only to authority NS records, mitigating the possible poison effect. This is a complement fix to CVE-2025-11411."
+              },
+              "properties": {
+                "cvssv3_baseScore": 10,
+                "cvssv3_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:N/I:H/A:H",
+                "precision": "very-high",
+                "security-severity": "10.0",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "CRITICAL"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2026-23112",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "kernel: nvmet-tcp: add bounds checks in nvmet_tcp_build_pdu_iovec"
+              },
+              "fullDescription": {
+                "text": "In the Linux kernel, the following vulnerability has been resolved:\n\nnvmet-tcp: add bounds checks in nvmet_tcp_build_pdu_iovec\n\nnvmet_tcp_build_pdu_iovec() could walk past cmd-\u003ereq.sg when a PDU\nlength or offset exceeds sg_cnt and then use bogus sg-\u003elength/offset\nvalues, leading to _copy_to_iter() GPF/KASAN. Guard sg_idx, remaining\nentries, and sg-\u003elength/offset before building the bvec."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2026-23112",
+              "help": {
+                "text": "Vulnerability CVE-2026-23112\nSeverity: CRITICAL\nPackage: linux-kbuild-6.12.63+deb13\nFixed Version: 6.12.73-1\nLink: [CVE-2026-23112](https://avd.aquasec.com/nvd/cve-2026-23112)\nIn the Linux kernel, the following vulnerability has been resolved:\n\nnvmet-tcp: add bounds checks in nvmet_tcp_build_pdu_iovec\n\nnvmet_tcp_build_pdu_iovec() could walk past cmd-\u003ereq.sg when a PDU\nlength or offset exceeds sg_cnt and then use bogus sg-\u003elength/offset\nvalues, leading to _copy_to_iter() GPF/KASAN. Guard sg_idx, remaining\nentries, and sg-\u003elength/offset before building the bvec.",
+                "markdown": "**Vulnerability CVE-2026-23112**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|CRITICAL|linux-kbuild-6.12.63+deb13|6.12.73-1|[CVE-2026-23112](https://avd.aquasec.com/nvd/cve-2026-23112)|\n\nIn the Linux kernel, the following vulnerability has been resolved:\n\nnvmet-tcp: add bounds checks in nvmet_tcp_build_pdu_iovec\n\nnvmet_tcp_build_pdu_iovec() could walk past cmd-\u003ereq.sg when a PDU\nlength or offset exceeds sg_cnt and then use bogus sg-\u003elength/offset\nvalues, leading to _copy_to_iter() GPF/KASAN. Guard sg_idx, remaining\nentries, and sg-\u003elength/offset before building the bvec."
+              },
+              "properties": {
+                "cvssv3_baseScore": 9.8,
+                "cvssv3_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+                "precision": "very-high",
+                "security-severity": "9.8",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "CRITICAL"
+                ]
+              }
+            }
+          ],
+          "version": "0.70.0"
+        }
+      },
+      "results": [
+        {
+          "ruleId": "CVE-2026-33278",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "Package: libunbound8\nInstalled Version: 1.22.0-2+deb13u2\nVulnerability CVE-2026-33278\nSeverity: CRITICAL\nFixed Version: 1.22.0-2+deb13u3\nLink: [CVE-2026-33278](https://avd.aquasec.com/nvd/cve-2026-33278)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "library/mar",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "library/mar: libunbound8@1.22.0-2+deb13u2"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-42960",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "Package: libunbound8\nInstalled Version: 1.22.0-2+deb13u2\nVulnerability CVE-2026-42960\nSeverity: CRITICAL\nFixed Version: 1.22.0-2+deb13u3\nLink: [CVE-2026-42960](https://avd.aquasec.com/nvd/cve-2026-42960)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "library/mar",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "library/mar: libunbound8@1.22.0-2+deb13u2"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-23112",
+          "ruleIndex": 2,
+          "level": "error",
+          "message": {
+            "text": "Package: linux-headers-6.12.57+deb13-common\nInstalled Version: 6.12.57-1\nVulnerability CVE-2026-23112\nSeverity: CRITICAL\nFixed Version: 6.12.73-1\nLink: [CVE-2026-23112](https://avd.aquasec.com/nvd/cve-2026-23112)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "library/mar",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "library/mar: linux-headers-6.12.57+deb13-common@6.12.57-1"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-23112",
+          "ruleIndex": 2,
+          "level": "error",
+          "message": {
+            "text": "Package: linux-headers-6.12.63+deb13-common\nInstalled Version: 6.12.63-1\nVulnerability CVE-2026-23112\nSeverity: CRITICAL\nFixed Version: 6.12.73-1\nLink: [CVE-2026-23112](https://avd.aquasec.com/nvd/cve-2026-23112)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "library/mar",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "library/mar: linux-headers-6.12.63+deb13-common@6.12.63-1"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-23112",
+          "ruleIndex": 2,
+          "level": "error",
+          "message": {
+            "text": "Package: linux-kbuild-6.12.57+deb13\nInstalled Version: 6.12.57-1\nVulnerability CVE-2026-23112\nSeverity: CRITICAL\nFixed Version: 6.12.73-1\nLink: [CVE-2026-23112](https://avd.aquasec.com/nvd/cve-2026-23112)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "library/mar",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "library/mar: linux-kbuild-6.12.57+deb13@6.12.57-1"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-23112",
+          "ruleIndex": 2,
+          "level": "error",
+          "message": {
+            "text": "Package: linux-kbuild-6.12.63+deb13\nInstalled Version: 6.12.63-1\nVulnerability CVE-2026-23112\nSeverity: CRITICAL\nFixed Version: 6.12.73-1\nLink: [CVE-2026-23112](https://avd.aquasec.com/nvd/cve-2026-23112)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "library/mar",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "library/mar: linux-kbuild-6.12.63+deb13@6.12.63-1"
+              }
+            }
+          ]
+        }
+      ],
+      "columnKind": "utf16CodeUnits",
+      "originalUriBaseIds": {
+        "ROOTPATH": {
+          "uri": "file:////"
+        }
+      }
+    }
+  ]
+}
